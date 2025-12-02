@@ -4,7 +4,7 @@ import java.util.*;
 
 public class TopWords {
     public static void main(String[] args) {
-        String filePath = "/Users/kate/Desktop/ИТИП/6 лаба/textfile";
+        String filePath = "/Users/dimarik/Desktop/ИТИП/6 лаба/textfile";
         File OurFile = new File(filePath);
         Map<String, Integer> wordCount = new HashMap<>();
 
