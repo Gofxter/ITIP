@@ -35,17 +35,19 @@ public class Task_5 {
     
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        
         String input = scanner.nextLine();
-        input = input.replace("[", "").replace("]", "").replace(" ", "");
-        String[] numbers = input.split(",");
+        String[] parts = input.split("],");
+        
+        String arrayPart = parts[0].replace("[", "").replace(" ", "");
+        String[] numbers = arrayPart.split(",");
         int[] arr = new int[numbers.length];
         
-
         for (int i = 0; i < numbers.length; i++) {
             arr[i] = Integer.parseInt(numbers[i]);
         }
         
-        int k = scanner.nextInt();
+        int k = Integer.parseInt(parts[1].trim());
         int result = pairDifference(arr, k);
         System.out.println(result);
         
