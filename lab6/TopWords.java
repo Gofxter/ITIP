@@ -4,8 +4,7 @@ import java.util.*;
 
 public class TopWords {
     public static void main(String[] args) {
-        String filePath = "/Users/dimarik/Desktop/ИТИП/6 лаба/textfile";
-        File OurFile = new File(filePath);
+        File OurFile = new File("text.txt");
         Map<String, Integer> wordCount = new HashMap<>();
 
         try (Scanner scanner = new Scanner(OurFile)) {
@@ -16,7 +15,7 @@ public class TopWords {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Файл не найден: " + filePath);
+            System.out.println("Файл не найден");
             return;
         }
 
