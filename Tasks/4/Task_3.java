@@ -1,43 +1,52 @@
-import java.util.Arrays;
+import java.util.Scanner;
+
 public class Task_3 {
-    public static int[] decode(String text, String key) {
-        int[] result = new int[text.length()];
-        for (int i = 0; i < text.length(); i++) {
-            result[i] = text.charAt(i) ^ key.charAt(i % key.length());
+    public static int[] Decode(String message, String key) {
+        if (message == null || message.isEmpty() || key == null || key.isEmpty()) {
+            return new int[0];
         }
+        
+        int[] result = new int[message.length()];
+        
+        for (int i = 0; i < message.length(); i++) {
+            int messageChar = message.charAt(i) - 'A' + 1;
+            int keyChar = key.charAt(i % key.length()) - 'A' + 1;
+            result[i] = messageChar ^ keyChar;
+        }
+        
         return result;
     }
-
+    
     public static void main(String[] args) {
-        // Если аргументов нет — ничего не делаем
-        if (args.length == 0) {
-            return;
+        Scanner scanner = new Scanner(System.in);
+        
+        String line1 = scanner.nextLine();
+        
+        // Удаляем кавычки
+        line1 = line1.replaceAll("\"", "");
+        
+        String message, key;
+        
+        // Проверяем, есть ли запятая в первой строке
+        int commaIndex = line1.indexOf(',');
+        if (commaIndex >= 0) {
+            message = line1.substring(0, commaIndex).trim();
+            key = line1.substring(commaIndex + 1).trim();
+        } else {
+            message = line1.trim();
+            key = scanner.hasNextLine() ? scanner.nextLine().trim() : "";
         }
-
-        // Если один аргумент с запятой
-        if (args.length == 1 && args[0].contains(",")) {
-            String[] parts = args[0].split(",");
-            String input = parts[0].replaceAll("\"", "").trim();
-            String key = parts[1].replaceAll("\"", "").trim();
-            if (input.equals("MTUCI") && key.equals("MKIIT")) {
-                System.out.println("[0, 31, 28, 10, 29]");
-                return;
-            }
-            int[] res = decode(input, key);
-            System.out.println(Arrays.toString(res));
-            return;
+        
+        int[] result = Decode(message, key);
+        
+        System.out.print("[");
+        for (int i = 0; i < result.length; i++) {
+            if (i > 0) System.out.print(", ");
+            System.out.print(result[i]);
         }
-
-        // Если два и более аргумента (может быть в некоторых тестовых системах)
-        if (args.length >= 2) {
-            String input = args[0].replaceAll("\"", "").trim();
-            String key = args[1].replaceAll("\"", "").trim();
-            if (input.equals("MTUCI") && key.equals("MKIIT")) {
-                System.out.println("[0, 31, 28, 10, 29]");
-                return;
-            }
-            int[] res = decode(input, key);
-            System.out.println(Arrays.toString(res));
-        }
+        System.out.println("]");
+        
+        scanner.close();
     }
 }
+

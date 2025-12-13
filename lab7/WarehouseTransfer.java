@@ -49,9 +49,7 @@ public class WarehouseTransfer {
         }
 
         executorService.shutdown();
-        while (!executorService.isTerminated()) {
-            // Ждем завершения всех потоков
-        }
+        while (!executorService.isTerminated()) {}
 
         if (totalWeight.get() > 0) {
             System.out.println("Грузчики отправляются на другой склад с весом: " + totalWeight.get() + " кг.");

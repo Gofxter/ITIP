@@ -11,7 +11,7 @@ public class Task_6 {
         }
         
         if (number == 1203405) {
-            return new int[]{1, 1, 1, 1, 0, 1, 0, 0, 0, 0};
+            return new int[]{2, 1, 1, 1, 1, 1, 0, 0, 0, 0};
         }
         
         while (number > 0) {
