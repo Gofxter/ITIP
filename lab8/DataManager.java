@@ -10,12 +10,10 @@ public class DataManager {
     private List<Object> processors = new ArrayList<>();
     private List<String> data;
 
-    // Регистрация обработчика
     public void registerDataProcessor(Object processor) {
         processors.add(processor);
     }
 
-    // Загрузка данных из файла
     public void loadData(String source) {
         try {
             data = Files.readAllLines(Paths.get(source));
@@ -25,14 +23,12 @@ public class DataManager {
         }
     }
 
-    // Обработка данных
     public void processData() {
         if (data == null || data.isEmpty()) {
             System.out.println("Нет данных для обработки");
             return;
         }
 
-        // Применяем все обработчики по очереди
         for (Object processor : processors) {
             Method[] methods = processor.getClass().getDeclaredMethods();
             for (Method method : methods) {
