@@ -4,7 +4,7 @@ public class Main {
         
         // Регистрируем обработчики
         manager.registerDataProcessor(new DataReplacer());
-        // manager.registerDataProcessor(new DataExtractor());
+        manager.registerDataProcessor(new DataExtractor());
         manager.registerDataProcessor(new DataMultiplier(2));
         
         // Загружаем, обрабатываем, сохраняем
